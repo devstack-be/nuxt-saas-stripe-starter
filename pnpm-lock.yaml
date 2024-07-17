@@ -93,6 +93,9 @@ importers:
       prisma:
         specifier: ^5.15.1
         version: 5.15.1
+      shiki:
+        specifier: ^1.10.3
+        version: 1.10.3
 
 packages:
 
@@ -9155,7 +9158,7 @@ snapshots:
 
   '@vue-email/code-block@0.0.3(vue@3.4.30(typescript@5.5.3))':
     dependencies:
-      shiki: 1.10.0
+      shiki: 1.10.3
       vue: 3.4.30(typescript@5.5.3)
 
   '@vue-email/code-inline@0.0.3(vue@3.4.30(typescript@5.5.3))':

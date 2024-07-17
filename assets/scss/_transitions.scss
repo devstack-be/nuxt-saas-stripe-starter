@@ -1,0 +1,299 @@
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.2s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+  filter: grayscale(1);
+}
+
+/* ==========================================================================
+1. fade
+========================================================================== */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
+
+/* ==========================================================================
+1. fade-fast
+========================================================================== */
+
+.fade-fast-enter-active,
+.fade-fast-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-fast-enter-from,
+.fade-fast-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-fast-enter-active,
+  .fade-fast-leave-active {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+2. fade-slow
+========================================================================== */
+
+.fade-slow-enter-active,
+.fade-slow-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-slow-enter-from,
+.fade-slow-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-slow-enter-active,
+  .fade-slow-leave-active {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+3. translate-page-y
+========================================================================== */
+
+.translate-page-y-enter-active,
+.translate-page-y-leave-active {
+  transform: translateY(0);
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.translate-page-y-enter-from {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.translate-page-y-leave-to {
+  transform: translateY(-300px);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .translate-page-y-enter-active,
+  .translate-page-y-leave-active {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+4. translate-page-x
+========================================================================== */
+
+.translate-page-x-enter-active {
+  animation: translate-page-x-in 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.translate-page-x-leave-active {
+  animation: translate-page-x-out 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes translate-page-x-in {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes translate-page-x-out {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(500px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .translate-page-x-enter-active,
+  .translate-page-x-leave-active {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+5. list
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+========================================================================== */
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-enter-active,
+  .list-leave-active {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+6. list-complete
+========================================================================== */
+
+.list-complete-item {
+  transition: all 0.8s ease;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-complete-enter-from,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.list-complete-leave-active {
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list-complete-enter-active,
+  .list-complete-leave-active {
+    transition: none;
+  }
+}
+/* ==========================================================================
+7. slide-y
+========================================================================== */
+
+.slide-y-enter-active {
+  transition: transform 0.3s ease-out;
+}
+
+.slide-y-leave-active {
+  transition: transform 0.2s ease-in;
+}
+
+.slide-y-enter-from {
+  transform: translateY(-100%);
+}
+
+.slide-y-enter-to {
+  transform: translateY(0);
+}
+
+.slide-y-leave-from {
+  transform: translateY(0);
+}
+
+.slide-y-leave-to {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-y-enter-active,
+  .slide-y-leave-active {
+    transition: none;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+7. slide-x
+========================================================================== */
+
+.slide-x-enter-active {
+  transition: transform 0.3s ease-out;
+}
+
+.slide-x-leave-active {
+  transition: transform 0.2s ease-in;
+}
+
+.slide-x-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-x-enter-to {
+  transform: translateX(0);
+}
+
+.slide-x-leave-from {
+  transform: translateX(0);
+}
+
+.slide-x-leave-to {
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-x-enter-active,
+  .slide-x-leave-active {
+    transition: none;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+7. from-bottom
+========================================================================== */
+
+.from-bottom-enter-active,
+.from-bottom-leave-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.3s ease;
+}
+
+.from-bottom-enter-from,
+.from-bottom-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .from-bottom-enter-active,
+  .from-bottom-leave-active {
+    transition: none;
+  }
+}

@@ -13,19 +13,19 @@
     "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.13.1",
     "@nuxt/devtools": "latest",
     "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
-    "@nuxt/ui": "^2.17.0",
     "@sidebase/nuxt-auth": "^0.8.0",
     "eslint": "^9.6.0",
-    "nuxt": "^3.12.2",
     "nuxt-headlessui": "^1.2.0",
     "nuxt-og-image": "3.0.0-rc.60",
     "prisma": "^5.15.1"
   },
   "dependencies": {
+    "nuxt": "^3.12.2",
+    "@nuxt/ui": "^2.17.0",
+    "@nuxt/content": "^2.13.1",
     "@headlessui/vue": "^1.7.22",
     "@heroicons/vue": "^2.1.4",
     "@iconify-json/mdi": "^1.1.67",

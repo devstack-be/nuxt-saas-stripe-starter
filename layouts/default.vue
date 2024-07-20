@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Footer from "./default/Footer.vue";
 import Header from "./default/Header.vue";
-
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 useHead({
   titleTemplate: (titleChunk) => {
     return titleChunk
@@ -23,5 +23,6 @@ useSeoMeta({
 
     <!-- Footer -->
     <Footer />
+    <SpeedInsights />
   </div>
 </template>

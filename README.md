@@ -94,7 +94,6 @@ pnpm run dev
 ### Code Quality
 
 - [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
-- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
 - [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
 
 ### Miscellaneous

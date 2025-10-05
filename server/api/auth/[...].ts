@@ -1,8 +1,9 @@
 import { NuxtAuthHandler } from "#auth";
 import GoogleProvider from "next-auth/providers/google";
 import { getUserById } from "~/lib/user";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from '@sidebase/authjs-prisma-adapter'
 import { prisma } from "~/lib/prisma";
+
 const config = useRuntimeConfig();
 
 export default NuxtAuthHandler({

@@ -1,11 +1,5 @@
-import vue from "@vitejs/plugin-vue";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  nitro: {
-    rollupConfig: {
-      plugins: [vue()],
-    },
-  },
   routeRules: {
     "/dashboard/**": { ssr: false },
   },
@@ -21,11 +15,6 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "nuxt-og-image",
   ],
-  content: {
-    highlight: {
-      theme: "github-light",
-    },
-  },
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     "components:extend": (components) => {
@@ -51,11 +40,6 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
     layoutTransition: { name: "fade", mode: "out-in" },
   },
-
-  typescript: {
-    strict: true,
-  },
-
   runtimeConfig: {
     // The private keys which are only available within server-side
     AuthSecret: "",

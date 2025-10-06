@@ -1,57 +1,54 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  routeRules: {
-    "/dashboard/**": { ssr: false },
-  },
-  css: ["~/assets/main.css", "~/assets/scss/main.scss"],
-  devtools: { enabled: true },
   modules: [
-    "@nuxt/ui",
-    "@nuxt/image",
-    "@sidebase/nuxt-auth",
-    "nuxt-headlessui",
-    "@pinia/nuxt",
-    "@nuxt/content",
-    "@nuxt/eslint",
-    "nuxt-og-image",
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui',
+    '@nuxt/content',
+    'nuxt-og-image',
+    '@sidebase/nuxt-auth',
+    'nuxt-headlessui', // to remove ?
+    '@pinia/nuxt',
+    '@vueuse/nuxt'
   ],
-  hooks: {
-    // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
-    "components:extend": (components) => {
-      const globals = components.filter((c) =>
-        ["UButton", "UIcon", "UAlert"].includes(c.pascalName)
-      );
-
-      globals.forEach((c) => (c.global = true));
-    },
-  },
-
-  ui: {
-    icons: ["mdi", "heroicons", "simple-icons"],
-  },
-
-  auth: {
-    provider: {
-      type: "authjs",
-    },
-  },
-
-  app: {
-    pageTransition: { name: "page", mode: "out-in" },
-    layoutTransition: { name: "fade", mode: "out-in" },
-  },
+  devtools: { enabled: true },
+  css: ['~/assets/main.css', '~/assets/scss/main.scss'],
   runtimeConfig: {
     // The private keys which are only available within server-side
-    AuthSecret: "",
-    GoogleClientId: "",
-    GoogleClientSecret: "",
-    StripeSecretKey: "",
-    StripeWebhookSecret: "",
-    ResendApiKey: "",
+    AuthSecret: '',
+    GoogleClientId: '',
+    GoogleClientSecret: '',
+    StripeSecretKey: '',
+    StripeWebhookSecret: '',
+    ResendApiKey: '',
     public: {
-      SiteUrl: "",
-    },
+      SiteUrl: ''
+    }
   },
-
-  compatibilityDate: "2024-07-06",
-});
+  routeRules: {
+    '/dashboard/**': { ssr: false },
+    '/docs': { redirect: '/docs/getting-started', prerender: false }
+  },
+  compatibilityDate: '2024-07-11',
+  nitro: {
+    prerender: {
+      routes: [
+        '/'
+      ],
+      crawlLinks: true
+    }
+  },
+  auth: {
+    provider: {
+      type: 'authjs'
+    }
+  },
+  eslint: {
+    config: {
+      stylistic: {
+        commaDangle: 'never',
+        braceStyle: '1tbs'
+      }
+    }
+  }
+})

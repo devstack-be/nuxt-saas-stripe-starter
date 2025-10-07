@@ -136,14 +136,13 @@ testimonials:
           src: https://i.pravatar.cc/120?img=14
 cta:
   title: Ready to build an amazing SaaS?
-  description: Join thousands of developers building with Nuxt and Nuxt UI. Get this template and start shipping today.
+  description: Get started with our Nuxt SaaS starter template and Nuxt UI components today.
   links:
     - label: Start building
-      to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt'
-      target: _blank
+      to: /docs
       trailingIcon: i-lucide-arrow-right
     - label: View on GitHub
-      to: 'https://github.com/nuxt-ui-templates/saas'
+      to: 'https://github.com/devstack-be/nuxt-saas-stripe-starter'
       target: _blank
       variant: subtle
       icon: i-simple-icons-github

@@ -56,14 +56,6 @@ plans:
       - 100 Databases
       - 100 SSL Certificates
       - 100 Support Tickets
-logos:
-  title: Powered by
-  icons:
-    - i-simple-icons-nuxt
-    - i-simple-icons-prisma
-    - i-simple-icons-neon
-    - i-simple-icons-vercel
-    - i-simple-icons-cloudflare
 faq:
   title: Frequently asked questions
   description: Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.

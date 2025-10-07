@@ -62,14 +62,7 @@ const items = ref([
     </UContainer>
 
     <UPageSection>
-      <UPageLogos :title="page.logos.title">
-        <UIcon
-          v-for="icon in page.logos.icons"
-          :key="icon"
-          :name="icon"
-          class="w-12 h-12 flex-shrink-0 text-muted"
-        />
-      </UPageLogos>
+      <PoweredBy />
     </UPageSection>
 
     <UPageSection

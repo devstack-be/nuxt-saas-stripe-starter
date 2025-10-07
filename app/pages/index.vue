@@ -53,7 +53,16 @@ useSeoMeta({
         />
       </template>
 
-      <PromotionalVideo />
+      <div
+        class="-m-2 rounded-xl bg-white p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4"
+      >
+        <NuxtImg
+          fit="cover"
+          src="/images/idea-launch.svg"
+          alt="App screenshot"
+          class="rounded-md mx-auto"
+        />
+      </div>
     </UPageHero>
 
     <UPageSection

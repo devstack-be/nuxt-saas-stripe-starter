@@ -94,10 +94,6 @@ export const collections = {
           highlight: z.boolean().optional()
         })
       ),
-      logos: z.object({
-        title: z.string().nonempty(),
-        icons: z.array(z.string())
-      }),
       faq: createBaseSchema().extend({
         items: z.array(
           z.object({

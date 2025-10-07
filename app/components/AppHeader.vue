@@ -48,14 +48,6 @@ const items = computed(() => [{
         to="/login"
         class="hidden lg:inline-flex"
       />
-
-      <UButton
-        label="Sign up"
-        color="neutral"
-        trailing-icon="i-lucide-arrow-right"
-        class="hidden lg:inline-flex"
-        to="/signup"
-      />
     </template>
 
     <template #body>
@@ -74,12 +66,6 @@ const items = computed(() => [{
         to="/login"
         block
         class="mb-3"
-      />
-      <UButton
-        label="Sign up"
-        color="neutral"
-        to="/signup"
-        block
       />
     </template>
   </UHeader>

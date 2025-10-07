@@ -1,90 +1,76 @@
 <script setup lang="ts">
-import * as z from 'zod'
-import type { FormSubmitEvent } from '@nuxt/ui'
-
 definePageMeta({
   layout: 'auth'
 })
 
 useSeoMeta({
   title: 'Login',
-  description: 'Login to your account to continue'
+  description: 'Sign in with your Google account to continue'
 })
 
-const toast = useToast()
+const { signIn } = useAuth()
+const signInLoading = ref(false)
 
-const fields = [{
-  name: 'email',
-  type: 'text' as const,
-  label: 'Email',
-  placeholder: 'Enter your email',
-  required: true
-}, {
-  name: 'password',
-  label: 'Password',
-  type: 'password' as const,
-  placeholder: 'Enter your password'
-}, {
-  name: 'remember',
-  label: 'Remember me',
-  type: 'checkbox' as const
-}]
-
-const providers = [{
-  label: 'Google',
-  icon: 'i-simple-icons-google',
-  onClick: () => {
-    toast.add({ title: 'Google', description: 'Login with Google' })
+async function signInWithGoogle() {
+  signInLoading.value = true
+  try {
+    await signIn('google', { callbackUrl: '/dashboard?signInCallback=true' })
+  } catch (error) {
+    signInLoading.value = false
+    console.error('Error signing in with Google:', error)
   }
-}, {
-  label: 'GitHub',
-  icon: 'i-simple-icons-github',
-  onClick: () => {
-    toast.add({ title: 'GitHub', description: 'Login with GitHub' })
-  }
-}]
-
-const schema = z.object({
-  email: z.string().email('Invalid email'),
-  password: z.string().min(8, 'Must be at least 8 characters')
-})
-
-type Schema = z.output<typeof schema>
-
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-  console.log('Submitted', payload)
 }
 </script>
 
 <template>
-  <UAuthForm
-    :fields="fields"
-    :schema="schema"
-    :providers="providers"
-    title="Welcome back"
-    icon="i-lucide-lock"
-    @submit="onSubmit"
-  >
-    <template #description>
-      Don't have an account? <ULink
-        to="/signup"
-        class="text-primary font-medium"
-      >Sign up</ULink>.
-    </template>
+  <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <div class="flex justify-center">
+        <UIcon
+          name="i-lucide-lock"
+          class="h-10 w-10 text-primary"
+        />
+      </div>
+      <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
+        Welcome back
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        This is strictly for demo purposes - only your email and profile picture will be stored.
+      </p>
+    </div>
 
-    <template #password-hint>
-      <ULink
-        to="/"
-        class="text-primary font-medium"
-        tabindex="-1"
-      >Forgot password?</ULink>
-    </template>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div class="space-y-6">
+        <UButton
+          :loading="signInLoading"
+          :disabled="signInLoading"
+          color="neutral"
+          variant="solid"
+          size="lg"
+          block
+          icon="i-simple-icons-google"
+          @click="signInWithGoogle"
+        >
+          Continue with Google
+        </UButton>
+      </div>
 
-    <template #footer>
-      By signing in, you agree to our <ULink
-        to="/"
-        class="text-primary font-medium"
-      >Terms of Service</ULink>.
-    </template>
-  </UAuthForm>
+      <p class="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
+        By signing in, you agree to our
+        <ULink
+          to="/terms"
+          class="text-primary font-medium hover:text-primary-600"
+        >
+          Terms of Service
+        </ULink>
+        and
+        <ULink
+          to="/privacy"
+          class="text-primary font-medium hover:text-primary-600"
+        >
+          Privacy Policy
+        </ULink>.
+      </p>
+    </div>
+  </div>
 </template>

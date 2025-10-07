@@ -4,11 +4,13 @@ const columns = [{
   children: [{
     label: 'Help center'
   }, {
-    label: 'Docs'
+    label: 'Docs',
+    to: '/docs'
   }, {
     label: 'Roadmap'
   }, {
-    label: 'Changelog'
+    label: 'Changelog',
+    to: '/changelog'
   }]
 }, {
   label: 'Features',
@@ -26,11 +28,13 @@ const columns = [{
   children: [{
     label: 'About'
   }, {
-    label: 'Pricing'
+    label: 'Pricing',
+    to: '/pricing'
   }, {
     label: 'Careers'
   }, {
-    label: 'Blog'
+    label: 'Blog',
+    to: '/blog'
   }]
 }]
 

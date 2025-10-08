@@ -10,15 +10,15 @@
       class="mt-4 mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none"
     >
       <div>
-        <h2 class="text-base font-semibold leading-7 text-neutral-900">
+        <h2 class="text-base font-semibold leading-7 text-neutral-900 dark:text-neutral-100">
           Profile
         </h2>
-        <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
+        <p class="mt-1 text-sm leading-6 text-neutral-500 dark:text-neutral-400 mb-2">
           This information will be displayed publicly so be careful what you
           share.
         </p>
         <dl
-          class="mt-6 space-y-6 divide-y divide-neutral-100 border-t border-neutral-200 text-sm leading-6"
+          class="mt-6 space-y-6 divide-y divide-neutral-100 dark:divide-neutral-800 border-t border-neutral-200 dark:border-neutral-700 text-sm leading-6"
         >
           <UForm
             :schema="schema"
@@ -27,7 +27,7 @@
           >
             <div class="py-6 sm:flex">
               <dt
-                class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6"
+                class="font-medium text-neutral-900 dark:text-neutral-100 sm:w-64 sm:flex-none sm:pr-6"
               >
                 Name
               </dt>
@@ -49,21 +49,21 @@
             </div>
           </UForm>
           <div class="py-6 sm:flex">
-            <dt class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6">
+            <dt class="font-medium text-neutral-900 dark:text-neutral-100 sm:w-64 sm:flex-none sm:pr-6">
               Email address
             </dt>
             <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-              <div class="text-neutral-900">
+              <div class="text-neutral-900 dark:text-neutral-100">
                 {{ authSession?.user?.email }}
               </div>
             </dd>
           </div>
           <div class="py-6 sm:flex">
-            <dt class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6">
+            <dt class="font-medium text-neutral-900 dark:text-neutral-100 sm:w-64 sm:flex-none sm:pr-6">
               Role
             </dt>
             <dd class="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-              <div class="text-neutral-400">
+              <div class="text-neutral-400 dark:text-neutral-500">
                 Coming soon
               </div>
             </dd>
@@ -71,16 +71,16 @@
         </dl>
       </div>
       <div>
-        <h2 class="text-base font-semibold leading-7 text-neutral-900">
+        <h2 class="text-base font-semibold leading-7 text-neutral-900 dark:text-neutral-100">
           Delete account
         </h2>
-        <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
+        <p class="mt-1 text-sm leading-6 text-neutral-500 dark:text-neutral-400 mb-2">
           No longer want to use our service? You can delete your account here.
           This action is not reversible. All information related to this account
           will be deleted permanently.
         </p>
         <dl
-          class="mt-6 space-y-6 divide-y divide-neutral-100 border-t border-neutral-200 text-sm leading-6"
+          class="mt-6 space-y-6 divide-y divide-neutral-100 dark:divide-neutral-800 border-t border-neutral-200 dark:border-neutral-700 text-sm leading-6"
         >
           <div class="pt-6 sm:flex">
             <UModal v-model:open="isOpen">
@@ -101,11 +101,11 @@
                       />
                     </div>
                     <div class="mt-3 text-center sm:mt-5">
-                      <h3 class="text-base font-semibold leading-6 text-neutral-900">
+                      <h3 class="text-base font-semibold leading-6 text-neutral-900 dark:text-neutral-100">
                         Delete account
                       </h3>
                       <div class="mt-2">
-                        <p class="text-sm text-neutral-500">
+                        <p class="text-sm text-neutral-500 dark:text-neutral-400">
                           <span class="font-bold">Warning: </span>This will permanently
                           delete your account and your active subscription!
                         </p>

@@ -58,14 +58,14 @@ async function signInWithGoogle() {
       <p class="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
         By signing in, you agree to our
         <ULink
-          to="/terms"
+          to="#"
           class="text-primary font-medium hover:text-primary-600"
         >
           Terms of Service
         </ULink>
         and
         <ULink
-          to="/privacy"
+          to="#"
           class="text-primary font-medium hover:text-primary-600"
         >
           Privacy Policy

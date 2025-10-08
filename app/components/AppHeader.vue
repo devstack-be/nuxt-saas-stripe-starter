@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import type { DropdownMenuItem } from '@nuxt/ui'
+
 const route = useRoute()
+const { data: authData } = useAuth()
 
 const items = computed(() => [{
   label: 'Docs',
@@ -15,6 +18,21 @@ const items = computed(() => [{
   label: 'Changelog',
   to: '/changelog'
 }])
+
+const dropdownMenuItems = [
+  {
+    label: 'Dashboard',
+    to: '/dashboard',
+    icon: 'i-lucide-layout-dashboard',
+    slot: 'dashboard' as const
+  }, {
+    label: 'Logout',
+    onSelect: async () => {
+      await useAuth().signOut({ callbackUrl: '/' })
+    },
+    icon: 'i-lucide-log-out'
+  }
+] satisfies DropdownMenuItem[]
 </script>
 
 <template>
@@ -34,6 +52,7 @@ const items = computed(() => [{
       <UColorModeButton />
 
       <UButton
+        v-if="!authData"
         icon="i-lucide-log-in"
         color="neutral"
         variant="ghost"
@@ -42,12 +61,25 @@ const items = computed(() => [{
       />
 
       <UButton
+        v-if="!authData"
         label="Sign in"
         color="neutral"
         variant="outline"
         to="/login"
         class="hidden lg:inline-flex"
       />
+      <UDropdownMenu
+        v-else
+        :items="dropdownMenuItems"
+        :ui="{ content: 'w-48' }"
+      >
+        <UButton
+          :label="authData.user?.name ?? authData.user?.email ?? undefined"
+          color="neutral"
+          variant="outline"
+          icon="i-lucide-user"
+        />
+      </UDropdownMenu>
     </template>
 
     <template #body>
@@ -60,10 +92,20 @@ const items = computed(() => [{
       <USeparator class="my-6" />
 
       <UButton
+        v-if="!authData"
         label="Sign in"
         color="neutral"
         variant="subtle"
         to="/login"
+        block
+        class="mb-3"
+      />
+      <UButton
+        v-else
+        label="Dashboard"
+        color="primary"
+        variant="solid"
+        to="/dashboard"
         block
         class="mb-3"
       />

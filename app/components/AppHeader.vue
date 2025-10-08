@@ -2,7 +2,7 @@
 import type { DropdownMenuItem } from '@nuxt/ui'
 
 const route = useRoute()
-const { data: authData } = useAuth()
+const { data: authData, signOut } = useAuth()
 
 const items = computed(() => [{
   label: 'Docs',
@@ -28,7 +28,7 @@ const dropdownMenuItems = [
   }, {
     label: 'Logout',
     onSelect: async () => {
-      await useAuth().signOut({ callbackUrl: '/' })
+      await signOut({ callbackUrl: '/' })
     },
     icon: 'i-lucide-log-out'
   }
@@ -71,6 +71,7 @@ const dropdownMenuItems = [
       <UDropdownMenu
         v-else
         :items="dropdownMenuItems"
+        class="hidden lg:inline-flex"
         :ui="{ content: 'w-48' }"
       >
         <UButton
@@ -108,6 +109,14 @@ const dropdownMenuItems = [
         to="/dashboard"
         block
         class="mb-3"
+      />
+      <UButton
+        icon="i-lucide-log-out"
+        label="Logout"
+        color="error"
+        variant="subtle"
+        block
+        @click="signOut({ callbackUrl: '/' })"
       />
     </template>
   </UHeader>

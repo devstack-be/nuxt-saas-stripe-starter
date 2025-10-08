@@ -25,7 +25,7 @@
             :state="state"
             @submit="onSubmit"
           >
-            <div class="pt-6 sm:flex">
+            <div class="py-6 sm:flex">
               <dt
                 class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6"
               >
@@ -48,7 +48,7 @@
               </dd>
             </div>
           </UForm>
-          <div class="pt-6 sm:flex">
+          <div class="py-6 sm:flex">
             <dt class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6">
               Email address
             </dt>
@@ -58,7 +58,7 @@
               </div>
             </dd>
           </div>
-          <div class="pt-6 sm:flex">
+          <div class="py-6 sm:flex">
             <dt class="font-medium text-neutral-900 sm:w-64 sm:flex-none sm:pr-6">
               Role
             </dt>
@@ -174,7 +174,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   toast.add({
     title: 'Profile updated',
     description: 'Your profile has been updated successfully.',
-    color: 'error'
+    color: 'success'
   })
 }
 const isDeleteAccountLoading = ref(false)

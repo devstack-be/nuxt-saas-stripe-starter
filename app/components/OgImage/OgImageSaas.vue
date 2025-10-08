@@ -21,7 +21,7 @@ defineProps({
       <h1 class="text-8xl mb-4 text-white">
         {{ title }}
       </h1>
-      <p class="text-5xl text-gray-200 leading-tight">
+      <p class="text-5xl text-neutral-200 leading-tight">
         {{ description }}
       </p>
     </div>

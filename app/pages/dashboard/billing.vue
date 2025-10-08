@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2 class="text-2xl font-semibold leading-7 text-gray-900">
+    <h2 class="text-2xl font-semibold leading-7 text-neutral-900">
       Billing
     </h2>
-    <p class="mt-1 text-sm leading-6 text-gray-500 mb-2">
+    <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
       Manage your billing information and subscription plan
     </p>
     <div
@@ -31,10 +31,10 @@
         class="w-full h-64"
       />
       <div v-else>
-        <h2 class="text-base font-semibold leading-7 text-gray-900">
+        <h2 class="text-base font-semibold leading-7 text-neutral-900">
           Subscription plan
         </h2>
-        <p class="mt-1 text-sm leading-6 text-gray-500 mb-2">
+        <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
           You are currently on to the
           <strong>{{ subscription.title }}</strong> plan.
         </p>

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="relative overflow-hidden rounded border border-dashed border-gray-400 dark:border-gray-500 opacity-75 px-4 flex items-center justify-center"
+    class="relative overflow-hidden rounded border border-dashed border-neutral-400 dark:border-neutral-500 opacity-75 px-4 flex items-center justify-center"
   >
     <svg
-      class="absolute inset-0 h-full w-full stroke-gray-900/10 dark:stroke-white/10"
+      class="absolute inset-0 h-full w-full stroke-neutral-900/10 dark:stroke-white/10"
       fill="none"
     >
       <defs>

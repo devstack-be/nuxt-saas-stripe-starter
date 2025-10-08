@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2 class="text-2xl font-semibold leading-7 text-gray-900">
+    <h2 class="text-2xl font-semibold leading-7 text-neutral-900">
       Panel
     </h2>
-    <p class="mt-1 text-sm leading-6 text-gray-500 mb-2">
+    <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
       Welcome to the dashboard
     </p>
     <UCard>

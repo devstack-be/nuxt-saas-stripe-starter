@@ -31,10 +31,10 @@ async function signInWithGoogle() {
           class="h-10 w-10 text-primary"
         />
       </div>
-      <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
+      <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-neutral-900 dark:text-white">
         Welcome back
       </h2>
-      <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="mt-2 text-center text-sm text-neutral-600 dark:text-neutral-400">
         This is strictly for demo purposes - only your email and profile picture will be stored.
       </p>
     </div>
@@ -55,7 +55,7 @@ async function signInWithGoogle() {
         </UButton>
       </div>
 
-      <p class="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
+      <p class="mt-6 text-center text-xs text-neutral-500 dark:text-neutral-400">
         By signing in, you agree to our
         <ULink
           to="#"

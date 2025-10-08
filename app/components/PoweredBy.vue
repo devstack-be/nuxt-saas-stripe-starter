@@ -35,7 +35,7 @@ const technos = [
 </script>
 
 <template>
-  <div class="mx-auto max-w-7xl px-6 lg:px-8 text-gray-500">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 text-neutral-500">
     <h2 class="text-center text-base font-medium leading-8 uppercase">
       Powered by
     </h2>

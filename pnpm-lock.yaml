@@ -80,6 +80,9 @@ importers:
       stripe:
         specifier: ^19.1.0
         version: 19.1.0(@types/node@24.6.2)
+      tailwindcss:
+        specifier: ^4.1.14
+        version: 4.1.14
       vue:
         specifier: ^3.5.0
         version: 3.5.22(typescript@5.9.3)

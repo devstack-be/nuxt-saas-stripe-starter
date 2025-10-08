@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20"
+    class="flex overflow-x-auto border-b border-neutral-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20"
   >
     <nav class="flex-none px-4 sm:px-6 lg:px-0">
       <ul
@@ -15,8 +15,8 @@
             :to="item.href"
             :class="[
               $route.path === item.href
-                ? 'bg-gray-50 text-indigo-600'
-                : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                ? 'bg-neutral-50 text-indigo-600'
+                : 'text-neutral-700 hover:text-indigo-600 hover:bg-neutral-50',
               'group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm leading-6 font-semibold'
             ]"
           >
@@ -25,7 +25,7 @@
               :class="[
                 $route.path === item.href
                   ? 'text-indigo-600'
-                  : 'text-gray-400 group-hover:text-indigo-600',
+                  : 'text-neutral-400 group-hover:text-indigo-600',
                 'h-6 w-6 shrink-0'
               ]"
               aria-hidden="true"

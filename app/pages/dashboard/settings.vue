@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2 class="text-2xl font-semibold leading-7 text-neutral-900">
+    <h2 class="text-2xl font-semibold leading-7 text-highlighted">
       Settings
     </h2>
-    <p class="mt-1 text-sm leading-6 text-neutral-500 mb-2">
+    <p class="mt-1 text-sm leading-6 text-muted mb-2">
       Manage account and website settings.
     </p>
     <div

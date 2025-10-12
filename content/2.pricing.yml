@@ -15,57 +15,46 @@ subscriptions:
   defaultFrequency: month
   currency: USD
 plans:
-  - title: Basic
-    description: A basic plan for individuals.
+  - title: Starter
+    description: A basic plan for beginners.
     price:
-      month: $9.9
-      year: $99.9
-    button:
-      label: Get Started
-      color: neutral
-      variant: subtle
+      month: $0
+      year: $0
+    stripeIds: null
     features:
-      - 1 GB Storage
-      - 1 Email Account
-      - 1 Domain
-      - 1 Website
-      - 1 Database
-      - 1 SSL Certificate
-      - 1 Support Ticket
-  - title: Standard
+      - Up to 100 monthly posts
+      - Basic analytics and reporting
+      - Access to standard templates
+  - title: Pro
     description: A standard plan for small teams.
     price:
       month: $19.9
       year: $199.9
+    stripeIds:
+      monthly: price_1PU9E9LAtQLLkA4NvFq3CjKh
+      yearly: price_1PU9ELLAtQLLkA4NKB10WtN8
     highlight: true
     scale: true
-    button:
-      label: Get Started
     features:
-      - 10 GB Storage
-      - 10 Email Accounts
-      - 10 Domains
-      - 10 Websites
-      - 10 Databases
-      - 10 SSL Certificates
-      - 10 Support Tickets
-  - title: Premium
+      - Up to 500 monthly posts
+      - Advanced analytics and reporting
+      - Access to business templates
+      - Priority customer support
+      - Exclusive webinars and training
+  - title: Business
     description: A premium plan for large teams.
     price:
       month: $29.9
       year: $299.9
-    button:
-      label: Get Started
-      color: neutral
-      variant: subtle
+    stripeIds:
+      monthly: price_1PU9EwLAtQLLkA4NlfujMvYV
+      yearly: price_1PU9FFLAtQLLkA4NpZDeEKUL
     features:
-      - 100 GB Storage
-      - 100 Email Accounts
-      - 100 Domains
-      - 100 Websites
-      - 100 Databases
-      - 100 SSL Certificates
-      - 100 Support Tickets
+      - Unlimited posts
+      - Real-time analytics and reporting
+      - Access to all templates, including custom branding
+      - 24/7 business customer support
+      - Personalized onboarding and account management
 faq:
   title: Frequently asked questions
   description: Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.

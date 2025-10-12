@@ -1,9 +1,10 @@
 <script setup lang="ts">
+const { data: authData } = useAuth()
 const { data: page } = await useAsyncData('pricing', () => queryCollection('pricing').first())
 
 const title = page.value?.seo?.title || page.value?.title
 const description = page.value?.seo?.description || page.value?.description
-
+const toast = useToast()
 useSeoMeta({
   title,
   ogTitle: title,
@@ -25,6 +26,27 @@ const items = ref([
     value: '1'
   }
 ])
+const generateSubscription = async (priceId: string | null) => {
+  if (!priceId) return
+  const result: { redirectUrl?: string } = await $fetch(
+    '/api/subscriptions/generate',
+    {
+      method: 'POST',
+      body: {
+        priceId
+      }
+    }
+  )
+  if (result.redirectUrl) {
+    navigateTo(result.redirectUrl, { external: true })
+  } else {
+    toast.add({
+      title: 'Error',
+      color: 'error',
+      description: 'An error occurred while processing your request.'
+    })
+  }
+}
 </script>
 
 <template>
@@ -57,11 +79,39 @@ const items = ref([
           v-bind="plan"
           :price="isYearly === '1' ? plan.price.year : plan.price.month"
           :billing-cycle="isYearly === '1' ? '/year' : '/month'"
-        />
+        >
+          <template #button>
+            <UButton
+              v-if="!authData"
+              label="Sign in"
+              to="/login"
+              color="primary"
+              block
+              :variant="plan.highlight ? 'solid' : 'outline'"
+            />
+            <UButton
+              v-else-if="authData && !authData.user?.stripeCustomerId && plan.stripeIds"
+              label="Buy plan"
+              color="primary"
+              block
+              :variant="plan.highlight ? 'solid' : 'outline'"
+              @click.prevent="generateSubscription(plan.stripeIds[isYearly === '1' ? 'yearly' : 'monthly'])"
+            />
+            <UButton
+              v-else
+              label="Dashboard"
+              to="/dashboard/billing"
+              color="primary"
+              block
+              :variant="plan.highlight ? 'solid' : 'outline'"
+            />
+          </template>
+        </UPricingPlan>
       </UPricingPlans>
     </UContainer>
 
     <UPageSection>
+      {{ authData }}
       <PoweredBy />
     </UPageSection>
 

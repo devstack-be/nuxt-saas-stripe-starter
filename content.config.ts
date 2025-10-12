@@ -87,9 +87,13 @@ export const collections = {
             month: z.string().nonempty(),
             year: z.string().nonempty()
           }),
+          stripeIds: z.object({
+            monthly: z.string().nullable(),
+            yearly: z.string().nullable()
+          }),
+          scale: z.boolean().optional(),
           billing_period: z.string().nonempty(),
           billing_cycle: z.string().nonempty(),
-          button: createLinkSchema(),
           features: z.array(z.string().nonempty()),
           highlight: z.boolean().optional()
         })

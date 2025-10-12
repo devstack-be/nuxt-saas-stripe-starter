@@ -1,9 +1,19 @@
-title: A plan for every need
-description: Our plans are designed to meet the requirements of both beginners and players. Get the right plan that suits you.
+title: Pricing plans for teams of all sizes
+description: Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.
 seo:
   title: Pricing
   description: Choose the plan that's right for you.
 navigation.icon: i-lucide-credit-card
+subscriptions:
+  frequencies:
+    - label: Monthly
+      value: month
+    - label: Yearly
+      value: year
+      highlight: true
+      note: Save 20%
+  defaultFrequency: month
+  currency: USD
 plans:
   - title: Basic
     description: A basic plan for individuals.

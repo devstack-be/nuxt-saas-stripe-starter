@@ -93,6 +93,108 @@ export default defineEventHandler(async (event) => {
       console.error(error)
     }
   }
+
+  if (stripeEvent.type === 'customer.subscription.updated') {
+    const subscription = stripeEvent.data.object as Stripe.Subscription
+
+    // Helper function to check if subscription is scheduled for cancellation
+    const isScheduledForCancellation = (sub: Stripe.Subscription) => {
+      // Check for scheduled cancellation at a specific date
+      const hasScheduledCancellation = !!sub.cancel_at
+
+      // Check for cancellation at the end of the current period
+      const willCancelAtPeriodEnd = sub.cancel_at_period_end
+
+      return hasScheduledCancellation || willCancelAtPeriodEnd
+    }
+
+    try {
+      // Find user by subscription ID
+      const user = await prisma.user.findFirst({
+        where: {
+          stripeSubscriptionId: subscription.id
+        }
+      })
+
+      if (!user) {
+        console.error('User not found for subscription:', subscription.id)
+        return { status: 200 }
+      }
+
+      const firstItem = subscription.items.data[0]
+      const currentPeriodEnd = new Date(firstItem.current_period_end * 1000)
+
+      // Prepare update data
+      const updateData: {
+        stripePriceId: string
+        stripeCurrentPeriodEnd: Date
+      } = {
+        stripePriceId: firstItem.price.id,
+        stripeCurrentPeriodEnd: currentPeriodEnd
+      }
+
+      // Handle subscription cancellation using the improved logic
+      const scheduledForCancellation = isScheduledForCancellation(subscription)
+      if (subscription.status === 'canceled' || scheduledForCancellation) {
+        // If canceled, we might want to clear the subscription data or set a flag
+        // For now, we'll keep the data until the period ends
+        if (subscription.cancel_at) {
+          const cancelDate = new Date(subscription.cancel_at * 1000)
+          console.log('Subscription scheduled for cancellation on:', cancelDate, 'for user:', user.id)
+        } else if (subscription.cancel_at_period_end) {
+          console.log('Subscription will cancel at period end for user:', user.id)
+        } else {
+          console.log('Subscription canceled for user:', user.id)
+        }
+      }
+
+      // Handle subscription status changes (active, past_due, unpaid, etc.)
+      if (subscription.status === 'past_due' || subscription.status === 'unpaid') {
+        console.log('Subscription payment issue for user:', user.id, 'Status:', subscription.status)
+      }
+
+      // Update user subscription details
+      await prisma.user.update({
+        where: {
+          id: user.id
+        },
+        data: updateData
+      })
+
+      // Log the subscription update
+      console.log('Subscription updated for user:', user.id, {
+        status: subscription.status,
+        priceId: firstItem.price.id,
+        periodEnd: currentPeriodEnd,
+        cancelAtPeriodEnd: subscription.cancel_at_period_end,
+        cancelAt: subscription.cancel_at ? new Date(subscription.cancel_at * 1000) : null,
+        scheduledForCancellation: scheduledForCancellation
+      })
+
+      // Send email notification if needed
+      if (user.email) {
+        try {
+          if (scheduledForCancellation) {
+            if (subscription.cancel_at) {
+              const cancelDate = new Date(subscription.cancel_at * 1000)
+              console.log('TODO: Send scheduled cancellation email to user', user.email, 'Cancel date:', cancelDate)
+            } else if (subscription.cancel_at_period_end) {
+              console.log('TODO: Send period-end cancellation email to user', user.email)
+            }
+          } else if (subscription.status === 'active' && stripeEvent.data.previous_attributes?.status !== 'active') {
+            console.log('TODO: Send reactivation email to user', user.email)
+          } else if (subscription.status === 'active' && stripeEvent.data.previous_attributes?.cancel_at_period_end === true) {
+            console.log('TODO: Send cancellation reversal email to user', user.email)
+          }
+        } catch (error) {
+          console.error('Error sending email notification:', error)
+        }
+      }
+    } catch (error) {
+      console.error('Error handling subscription update:', error)
+    }
+  }
+
   return {
     status: 200
   }

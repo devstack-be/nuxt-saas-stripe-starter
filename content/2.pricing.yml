@@ -7,19 +7,18 @@ navigation.icon: i-lucide-credit-card
 subscriptions:
   frequencies:
     - label: Monthly
-      value: month
+      value: monthly
+      cycle: /month
     - label: Yearly
-      value: year
-      highlight: true
-      note: Save 20%
-  defaultFrequency: month
-  currency: USD
+      value: yearly
+      cycle: /year
+  currency: EUR
 plans:
   - title: Starter
     description: A basic plan for beginners.
     price:
-      month: $0
-      year: $0
+      monthly: 0
+      yearly: 0
     stripeIds: null
     features:
       - Up to 100 monthly posts
@@ -28,8 +27,8 @@ plans:
   - title: Pro
     description: A standard plan for small teams.
     price:
-      month: $19.9
-      year: $199.9
+      monthly: 15
+      yearly: 144
     stripeIds:
       monthly: price_1PU9E9LAtQLLkA4NvFq3CjKh
       yearly: price_1PU9ELLAtQLLkA4NKB10WtN8
@@ -44,8 +43,8 @@ plans:
   - title: Business
     description: A premium plan for large teams.
     price:
-      month: $29.9
-      year: $299.9
+      monthly: 30
+      yearly: 300
     stripeIds:
       monthly: price_1PU9EwLAtQLLkA4NlfujMvYV
       yearly: price_1PU9FFLAtQLLkA4NpZDeEKUL

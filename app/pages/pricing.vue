@@ -14,18 +14,12 @@ useSeoMeta({
 
 defineOgImageComponent('Saas')
 
-const isYearly = ref('0')
+const selectedFrequency = ref<'monthly' | 'yearly'>('monthly')
+const items = page.value?.subscriptions.frequencies.map(freq => ({
+  label: freq.label,
+  value: freq.value
+}))
 
-const items = ref([
-  {
-    label: 'Monthly',
-    value: '0'
-  },
-  {
-    label: 'Yearly',
-    value: '1'
-  }
-])
 const generateSubscription = async (priceId: string | null) => {
   if (!priceId) return
   const result: { redirectUrl?: string } = await $fetch(
@@ -57,7 +51,7 @@ const generateSubscription = async (priceId: string | null) => {
     >
       <template #links>
         <UTabs
-          v-model="isYearly"
+          v-model="selectedFrequency"
           :items="items"
           color="neutral"
           size="xs"
@@ -76,9 +70,14 @@ const generateSubscription = async (priceId: string | null) => {
         <UPricingPlan
           v-for="(plan, index) in page.plans"
           :key="index"
-          v-bind="plan"
-          :price="isYearly === '1' ? plan.price.year : plan.price.month"
-          :billing-cycle="isYearly === '1' ? '/year' : '/month'"
+          :title="plan.title"
+          :scale="plan.scale"
+          :description="plan.description"
+          :billing-cycle="page.subscriptions.frequencies.find(f => f.value === selectedFrequency)?.cycle"
+          :billing-period="plan.billing_period"
+          :features="plan.features"
+          :price="formatCurrency(plan.price[selectedFrequency], page.subscriptions.currency)"
+          :highlight="plan.highlight"
         >
           <template #button>
             <UButton
@@ -95,7 +94,7 @@ const generateSubscription = async (priceId: string | null) => {
               color="primary"
               block
               :variant="plan.highlight ? 'solid' : 'outline'"
-              @click.prevent="generateSubscription(plan.stripeIds[isYearly === '1' ? 'yearly' : 'monthly'])"
+              @click.prevent="generateSubscription(plan.stripeIds[selectedFrequency])"
             />
             <UButton
               v-else
@@ -111,7 +110,6 @@ const generateSubscription = async (priceId: string | null) => {
     </UContainer>
 
     <UPageSection>
-      {{ authData }}
       <PoweredBy />
     </UPageSection>
 

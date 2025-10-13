@@ -96,6 +96,7 @@ export default defineEventHandler(async (event) => {
 
   if (stripeEvent.type === 'customer.subscription.updated') {
     const subscription = stripeEvent.data.object as Stripe.Subscription
+    const previousAttributes = stripeEvent.data.previous_attributes
 
     // Helper function to check if subscription is scheduled for cancellation
     const isScheduledForCancellation = (sub: Stripe.Subscription) => {
@@ -106,6 +107,25 @@ export default defineEventHandler(async (event) => {
       const willCancelAtPeriodEnd = sub.cancel_at_period_end
 
       return hasScheduledCancellation || willCancelAtPeriodEnd
+    }
+
+    // Check if this is a meaningful change that requires processing
+    const hasSignificantChange = () => {
+      if (!previousAttributes) return false
+
+      // Check for important subscription changes
+      const statusChanged = 'status' in previousAttributes
+      const priceChanged = 'items' in previousAttributes
+      const cancelationChanged = 'cancel_at_period_end' in previousAttributes || 'cancel_at' in previousAttributes
+      const periodChanged = 'current_period_end' in previousAttributes
+
+      return statusChanged || priceChanged || cancelationChanged || periodChanged
+    }
+
+    // Skip processing if no significant changes (e.g., only metadata/description updates)
+    if (!hasSignificantChange()) {
+      console.log('Skipping subscription update - no significant changes detected for:', subscription.id)
+      return { status: 200 }
     }
 
     try {
@@ -168,23 +188,38 @@ export default defineEventHandler(async (event) => {
         periodEnd: currentPeriodEnd,
         cancelAtPeriodEnd: subscription.cancel_at_period_end,
         cancelAt: subscription.cancel_at ? new Date(subscription.cancel_at * 1000) : null,
-        scheduledForCancellation: scheduledForCancellation
+        scheduledForCancellation: scheduledForCancellation,
+        changedAttributes: previousAttributes ? Object.keys(previousAttributes) : []
       })
 
-      // Send email notification if needed
-      if (user.email) {
+      // Send email notification only for significant changes
+      if (user.email && previousAttributes) {
         try {
-          if (scheduledForCancellation) {
+          // Check if cancellation status just changed (avoid duplicate emails)
+          const wasCancelledBefore = previousAttributes.cancel_at_period_end === true || !!previousAttributes.cancel_at
+          const isCancelledNow = scheduledForCancellation
+
+          // Only send cancellation email if cancellation status just changed from false to true
+          if (isCancelledNow && !wasCancelledBefore) {
             if (subscription.cancel_at) {
               const cancelDate = new Date(subscription.cancel_at * 1000)
               console.log('TODO: Send scheduled cancellation email to user', user.email, 'Cancel date:', cancelDate)
             } else if (subscription.cancel_at_period_end) {
               console.log('TODO: Send period-end cancellation email to user', user.email)
             }
-          } else if (subscription.status === 'active' && stripeEvent.data.previous_attributes?.status !== 'active') {
-            console.log('TODO: Send reactivation email to user', user.email)
-          } else if (subscription.status === 'active' && stripeEvent.data.previous_attributes?.cancel_at_period_end === true) {
+          } else if (!isCancelledNow && wasCancelledBefore && subscription.status === 'active') {
+            // Check if cancellation was reversed (was cancelled before, now active)
             console.log('TODO: Send cancellation reversal email to user', user.email)
+          } else if (subscription.status === 'active' && previousAttributes.status && previousAttributes.status !== 'active') {
+            // Check for subscription reactivation (status changed from inactive to active)
+            console.log('TODO: Send reactivation email to user', user.email)
+          } else if (previousAttributes.items && previousAttributes.items.data) {
+            // Check for plan changes (price changed)
+            const previousPriceId = previousAttributes.items.data[0]?.price?.id
+            const currentPriceId = firstItem.price.id
+            if (previousPriceId && previousPriceId !== currentPriceId) {
+              console.log('TODO: Send plan change confirmation email to user', user.email, 'From:', previousPriceId, 'To:', currentPriceId)
+            }
           }
         } catch (error) {
           console.error('Error sending email notification:', error)

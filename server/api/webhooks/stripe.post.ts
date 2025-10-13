@@ -2,6 +2,7 @@
 import { stripe } from '@/lib/stripe'
 import type Stripe from 'stripe'
 import { prisma } from '~/lib/prisma'
+import { sendSubscriptionEmail, sendCancellationEmail } from '~/lib/email'
 
 export default defineEventHandler(async (event) => {
   const runtimeConfig = useRuntimeConfig()
@@ -53,11 +54,30 @@ export default defineEventHandler(async (event) => {
           stripeCurrentPeriodEnd: currentPeriodEnd
         }
       })
-      if (user && user.email) {
+      if (user && user.email && user.name) {
         try {
-          console.log('TODO: Send email to user', user.email)
+          // Get subscription details for email
+          const priceData = await stripe.prices.retrieve(subscription.items.data[0].price.id)
+          const productData = await stripe.products.retrieve(priceData.product as string)
+
+          // Calculate next billing date
+          const nextBillingDate = new Date(subscription.items.data[0].current_period_end * 1000)
+
+          // Send subscription activation email
+          await sendSubscriptionEmail({
+            to: user.email,
+            userName: user.name,
+            userEmail: user.email,
+            subscriptionName: productData.name || 'Subscription',
+            subscriptionPrice: `$${(priceData.unit_amount || 0) / 100}`,
+            billingCycle: priceData.recurring?.interval || 'month',
+            nextBillingDate: nextBillingDate.toLocaleDateString(),
+            baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+          })
+
+          console.log('Subscription activation email sent to:', user.email)
         } catch (error) {
-          console.error(error)
+          console.error('Error sending subscription email:', error)
         }
       }
     } catch (error) {
@@ -200,25 +220,68 @@ export default defineEventHandler(async (event) => {
           const isCancelledNow = scheduledForCancellation
 
           // Only send cancellation email if cancellation status just changed from false to true
-          if (isCancelledNow && !wasCancelledBefore) {
-            if (subscription.cancel_at) {
-              const cancelDate = new Date(subscription.cancel_at * 1000)
-              console.log('TODO: Send scheduled cancellation email to user', user.email, 'Cancel date:', cancelDate)
-            } else if (subscription.cancel_at_period_end) {
-              console.log('TODO: Send period-end cancellation email to user', user.email)
+          if (isCancelledNow && !wasCancelledBefore && user.name) {
+            try {
+              const priceData = await stripe.prices.retrieve(firstItem.price.id)
+              const productData = await stripe.products.retrieve(priceData.product as string)
+
+              let cancelDate: string
+              if (subscription.cancel_at) {
+                cancelDate = new Date(subscription.cancel_at * 1000).toLocaleDateString()
+              } else if (subscription.cancel_at_period_end) {
+                cancelDate = new Date(firstItem.current_period_end * 1000).toLocaleDateString()
+              } else {
+                cancelDate = 'immediately'
+              }
+
+              await sendCancellationEmail({
+                to: user.email,
+                userName: user.name,
+                userEmail: user.email,
+                subscriptionName: productData.name || 'Subscription',
+                cancelDate,
+                baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+              })
+
+              console.log('Cancellation email sent to:', user.email)
+            } catch (emailError) {
+              console.error('Error sending cancellation email:', emailError)
             }
           } else if (!isCancelledNow && wasCancelledBefore && subscription.status === 'active') {
             // Check if cancellation was reversed (was cancelled before, now active)
-            console.log('TODO: Send cancellation reversal email to user', user.email)
+            console.log('Subscription cancellation reversed for user:', user.email)
+            // TODO: Create and send cancellation reversal email template
           } else if (subscription.status === 'active' && previousAttributes.status && previousAttributes.status !== 'active') {
             // Check for subscription reactivation (status changed from inactive to active)
-            console.log('TODO: Send reactivation email to user', user.email)
+            console.log('Subscription reactivated for user:', user.email)
+            // TODO: Create and send reactivation email template
           } else if (previousAttributes.items && previousAttributes.items.data) {
             // Check for plan changes (price changed)
             const previousPriceId = previousAttributes.items.data[0]?.price?.id
             const currentPriceId = firstItem.price.id
-            if (previousPriceId && previousPriceId !== currentPriceId) {
-              console.log('TODO: Send plan change confirmation email to user', user.email, 'From:', previousPriceId, 'To:', currentPriceId)
+            if (previousPriceId && previousPriceId !== currentPriceId && user.name) {
+              try {
+                // Get new subscription details for plan change email
+                const priceData = await stripe.prices.retrieve(currentPriceId)
+                const productData = await stripe.products.retrieve(priceData.product as string)
+                const nextBillingDate = new Date(firstItem.current_period_end * 1000)
+
+                // Send updated subscription email
+                await sendSubscriptionEmail({
+                  to: user.email,
+                  userName: user.name,
+                  userEmail: user.email,
+                  subscriptionName: productData.name ? `${productData.name} (Updated Plan)` : 'Updated Subscription',
+                  subscriptionPrice: `$${(priceData.unit_amount || 0) / 100}`,
+                  billingCycle: priceData.recurring?.interval || 'month',
+                  nextBillingDate: nextBillingDate.toLocaleDateString(),
+                  baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+                })
+
+                console.log('Plan change confirmation email sent to:', user.email)
+              } catch (emailError) {
+                console.error('Error sending plan change email:', emailError)
+              }
             }
           }
         } catch (error) {

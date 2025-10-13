@@ -1,3 +1,5 @@
+import vue from '@vitejs/plugin-vue'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -31,6 +33,9 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-07-11',
   nitro: {
+    rollupConfig: {
+      plugins: [vue()]
+    },
     prerender: {
       routes: [
         '/'

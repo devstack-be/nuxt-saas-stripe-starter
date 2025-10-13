@@ -14,7 +14,6 @@ export default defineNuxtRouteMiddleware((to, _from) => {
     route === '/' ? to.path === route : to.path.startsWith(route)
   )
   const isGuestRoute = guestOnlyRoutes.includes(to.path)
-
   // Vérifier si la route existe
   const routeExists = to.matched.length > 0
 

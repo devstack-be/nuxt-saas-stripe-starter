@@ -54,7 +54,6 @@ export default NuxtAuthHandler({
         }
         session.user.name = token.name
         session.user.image = token.picture
-        // @ts-expect-error - Extending session user type
         session.user.stripeCustomerId = token.stripeCustomerId
 
         if (token.email) {

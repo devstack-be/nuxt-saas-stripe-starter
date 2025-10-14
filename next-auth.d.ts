@@ -1,17 +1,21 @@
-import type { DefaultSession } from 'next-auth'
+import type { DefaultSession, DefaultUser } from 'next-auth'
+import type { DefaultJWT } from 'next-auth/jwt'
 
 declare module 'next-auth' {
-  /* Returned by `useAuth`, `getSession` and `getServerSession` */
   interface Session extends DefaultSession {
     user: {
       id: string
       stripeCustomerId?: string | null
-    }
+    } & DefaultSession['user']
+  }
+
+  interface User extends DefaultUser {
+    stripeCustomerId?: string | null
   }
 }
+
 declare module 'next-auth/jwt' {
-  /** Returned by the `jwt` callback and `getToken` */
-  interface JWT {
+  interface JWT extends DefaultJWT {
     stripeCustomerId?: string | null
   }
 }

@@ -4,6 +4,7 @@ import { getUserById } from '~/lib/user'
 import { PrismaAdapter } from '@sidebase/authjs-prisma-adapter'
 import { prisma } from '~/lib/prisma'
 import { sendWelcomeEmail } from '~/lib/email'
+import '~/types/next-auth.d.ts'
 
 const config = useRuntimeConfig()
 
@@ -40,7 +41,7 @@ export default NuxtAuthHandler({
             console.log('Welcome email sent successfully')
           }
         } catch (error) {
-          console.error('Erreur lors de la vérification/envoi email:', error)
+          console.error('Error occurred while checking/sending email:', error)
         }
       }
       return true

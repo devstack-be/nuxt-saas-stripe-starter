@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     '@nuxt/content',
     'nuxt-og-image',
     '@sidebase/nuxt-auth',
-    'nuxt-headlessui', // to remove ?
     '@pinia/nuxt',
     '@vueuse/nuxt'
   ],

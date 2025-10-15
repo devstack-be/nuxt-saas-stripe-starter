@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Nuxt SaaS Stareter is a **open source boilerplate** and will help you to create your own SaaS website with Nuxt.js. It is built with Nuxt 3, Nuxt UI and Nuxt Content. It is a perfect starting point for your next project.
+Nuxt SaaS Stareter is a **open source boilerplate** and will help you to create your own SaaS website with Nuxt.js. It is built with Nuxt 4, Nuxt UI and Nuxt Content. It is a perfect starting point for your next project.
 
 This template is inspired by:
 
@@ -58,14 +58,12 @@ pnpm run dev
 
 - [ ] Add user Roles
 - [ ] Add Admin panel
-- [ ] Implement Docs search bar
-- [ ] Add a blog
 
 ## Tech Stack + Features
 
 ### Stack
 
-- [Nuxt 3](https://nuxt.com) - The Intuitive Vue Framework
+- [Nuxt 4](https://nuxt.com) - The Intuitive Vue Framework
 - [Prisma ORM](https://prisma.io) - Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB
 - [Sidebase Nuxt Auth](https://sidebase.io/nuxt-auth) - Effortlessly connect your Nuxt 3 application with Google, Github, Azure and countless others.
 - [Stripe](https://stripe.com) - Online payment processing for internet businesses
@@ -105,7 +103,7 @@ Created by [@devstack-be](https://www.devstack.be) in 2024, released under the [
 
 ## Credits
 
-This project was inspired by [Next SaaS Stripe Starter](https://github.com/mickasmt/next-saas-stripe-starter)
+This project was inspired by [Next SaaS Stripe Starter](https://github.com/mickasmt/next-saas-stripe-starter) and built with [Nuxt UI SaaS]([https://github.com/mickasmt/next-saas-stripe-starter](https://github.com/nuxt-ui-templates/saas))
 
 This project was also inspired by shadcn's [Taxonomy](https://github.com/shadcn-ui/taxonomy), Steven Tey’s [Precedent](https://github.com/steven-tey/precedent), and Antonio Erdeljac's [Next 13 AI SaaS](https://github.com/AntonioErdeljac/next13-ai-saas).
 

@@ -1,22 +1,5 @@
 import type { User } from '@prisma/client'
 
-declare module 'nuxt/schema' {
-  interface PublicRuntimeConfig {
-    SiteUrl: string
-  }
-}
-declare module '@nuxt/schema' {
-  interface PublicRuntimeConfig {
-    SiteUrl: string
-  }
-  interface ConfigSchema {
-    runtimeConfig: {
-      public?: {
-        SiteUrl: string
-      }
-    }
-  }
-}
 export type UserSubscriptionPlan = SubscriptionPlan
   & Pick<User, 'stripeCustomerId' | 'stripeSubscriptionId' | 'stripePriceId'> & {
     stripeCurrentPeriodEnd?: number
@@ -39,7 +22,7 @@ export type SubscriptionPlan = {
     monthly: number
     yearly: number
   }
-  stripeIds: {
+  stripeIds: null | {
     monthly: string | null
     yearly: string | null
   }

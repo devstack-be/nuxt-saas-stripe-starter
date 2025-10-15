@@ -6,8 +6,22 @@ import { stripe } from '~/lib/stripe'
 import type { SubscriptionPlan } from '~/types'
 
 export default defineEventHandler(async (event) => {
-  const { plans } = useAppConfig().subscriptions as {
-    plans: SubscriptionPlan[]
+  let plans: SubscriptionPlan[]
+  try {
+    const pricingContent = await queryCollection(event, 'pricing').first()
+    plans = pricingContent?.plans
+
+    if (!plans || plans.length === 0) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Pricing plans not found'
+      })
+    }
+  } catch {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Failed to load pricing plans'
+    })
   }
   const session = (await getServerSession(event)) as Session
   if (!session.user || !session.user.email) {
@@ -46,15 +60,15 @@ export default defineEventHandler(async (event) => {
 
   // Find the pricing data corresponding to the user's plan
   const userPlan
-    = plans.find(plan => plan.stripeIds.monthly === user.stripePriceId)
-      || plans.find(plan => plan.stripeIds.yearly === user.stripePriceId)
+    = plans.find(plan => plan.stripeIds && plan.stripeIds.monthly === user.stripePriceId)
+      || plans.find(plan => plan.stripeIds && plan.stripeIds.yearly === user.stripePriceId)
 
   const plan = isPaid && userPlan ? userPlan : plans[0]
 
   const interval = isPaid
-    ? userPlan?.stripeIds.monthly === user.stripePriceId
+    ? userPlan?.stripeIds && userPlan.stripeIds.monthly === user.stripePriceId
       ? 'month'
-      : userPlan?.stripeIds.yearly === user.stripePriceId
+      : userPlan?.stripeIds && userPlan.stripeIds.yearly === user.stripePriceId
         ? 'year'
         : null
     : null

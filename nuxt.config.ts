@@ -43,6 +43,7 @@ export default defineNuxtConfig({
     }
   },
   auth: {
+    baseURL: process.env.NUXT_PUBLIC_SITE_URL,
     provider: {
       type: 'authjs'
     }

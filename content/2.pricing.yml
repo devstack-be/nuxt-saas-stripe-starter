@@ -1,0 +1,72 @@
+title: Pricing plans for teams of all sizes
+description: Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.
+seo:
+  title: Pricing
+  description: Choose the plan that's right for you.
+navigation.icon: i-lucide-credit-card
+subscriptions:
+  frequencies:
+    - label: Monthly
+      value: monthly
+      cycle: /month
+    - label: Yearly
+      value: yearly
+      cycle: /year
+  currency: EUR
+plans:
+  - title: Starter
+    description: A basic plan for beginners.
+    price:
+      monthly: 0
+      yearly: 0
+    stripeIds: null
+    features:
+      - Up to 100 monthly posts
+      - Basic analytics and reporting
+      - Access to standard templates
+  - title: Pro
+    description: A standard plan for small teams.
+    price:
+      monthly: 15
+      yearly: 144
+    stripeIds:
+      monthly: price_1PU9E9LAtQLLkA4NvFq3CjKh
+      yearly: price_1PU9ELLAtQLLkA4NKB10WtN8
+    highlight: true
+    scale: true
+    features:
+      - Up to 500 monthly posts
+      - Advanced analytics and reporting
+      - Access to business templates
+      - Priority customer support
+      - Exclusive webinars and training
+  - title: Business
+    description: A premium plan for large teams.
+    price:
+      monthly: 30
+      yearly: 300
+    stripeIds:
+      monthly: price_1PU9EwLAtQLLkA4NlfujMvYV
+      yearly: price_1PU9FFLAtQLLkA4NpZDeEKUL
+    features:
+      - Unlimited posts
+      - Real-time analytics and reporting
+      - Access to all templates, including custom branding
+      - 24/7 business customer support
+      - Personalized onboarding and account management
+faq:
+  title: Frequently asked questions
+  description: Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.
+  items:
+    - label: Is this a secure service?
+      content: Qui sunt nostrud aliquip reprehenderit enim proident veniam magna aliquip velit occaecat eiusmod nisi deserunt sunt.
+    - label: How can I cancel my subscription?
+      content: Consectetur irure Lorem nostrud adipisicing aliqua mollit Lorem sit officia magna eiusmod cupidatat.
+    - label: How does the free trial work?
+      content: Quis officia commodo magna eu qui aliquip duis.
+    - label: Can I switch plans later?
+      content: Dolore irure ullamco dolore eu occaecat magna eiusmod dolor aliqua culpa labore.
+    - label: Do you offer refunds?
+      content: Duis mollit nostrud voluptate mollit Lorem dolore commodo veniam incididunt eiusmod.
+    - label: Do you offer support?
+      content: Aliqua sit nisi consequat pariatur Lorem minim irure qui.

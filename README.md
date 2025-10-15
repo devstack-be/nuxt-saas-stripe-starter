@@ -74,7 +74,6 @@ pnpm run dev
 
 - [Nuxt UI / TailwindCSS](https://ui.nuxt.com/) – A UI Library for Modern Web Apps
 - [Nuxt Image](https://image.nuxt.com/) – Optimized Images for your Nuxt Apps
-- [Nuxt Headless UI](https://nuxt.com/modules/headlessui) – Headless UI integration for Nuxt. Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
 - [Pinia Nuxt](https://nuxt.com/modules/pinia) – The Vue Store that you will enjoy using
 - [Nuxt Content](https://content.nuxt.com/) – Create a powerful data layer for your application. Use Vue components in Markdown with the MDC syntax.
 - [Nuxt OG Image](https://nuxt.com/modules/og-image) – Generate OG Images with Vue templates in Nuxt.
@@ -94,7 +93,6 @@ pnpm run dev
 ### Code Quality
 
 - [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
-- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
 - [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
 
 ### Miscellaneous

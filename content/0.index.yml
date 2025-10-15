@@ -1,0 +1,148 @@
+title: Build and deploy your Nuxt SaaS within minutes!
+description: Open source boilerplate built with Nuxt 3, Prisma, Neon, Nuxt Auth, Resend, Nuxt UI, and Stripe.
+seo:
+  title: Nuxt SaaS Stripe Starter Template
+  description: Open source boilerplate to create your own SaaS website with Nuxt 3. Built with Prisma, Stripe, authentication, and modern UI components.
+navigation: false
+hero:
+  links:
+    - label: Get started
+      icon: i-lucide-arrow-right
+      trailing: true
+      to: /docs
+      size: xl
+    - label: Stars on GitHub
+      icon: i-simple-icons-github
+      size: xl
+      color: neutral
+      variant: subtle
+      to: https://github.com/devstack-be/nuxt-saas-stripe-starter
+      target: _blank
+sections:
+  - title: Complete SaaS Stack
+    description: Everything you need to build a modern SaaS application. From authentication to payments, from database to deployment - it's all configured and ready to use.
+    id: features
+    orientation: horizontal
+    features:
+      - name: Stripe Integration
+        description: Complete payment system with subscriptions, webhooks, and billing management. Ready for production use.
+        icon: i-lucide-credit-card
+      - name: Authentication Ready
+        description: Built with Sidebase Nuxt Auth. Support for Google, GitHub, Azure and countless other providers.
+        icon: i-lucide-shield
+      - name: Database & ORM
+        description: Prisma ORM with PostgreSQL support. Includes migrations and a complete schema for SaaS applications.
+        icon: i-lucide-database
+  - title: Production Ready Platform
+    description: Deploy with confidence using modern tools and services. From Vercel deployment to Neon database, everything is configured for scalability.
+    orientation: horizontal
+    reverse: true
+    features:
+      - name: Email Integration
+        description: Powered by Resend for transactional emails. Beautiful templates and reliable delivery out of the box.
+        icon: i-lucide-mail
+      - name: Modern UI/UX
+        description: Built with Nuxt UI and Tailwind CSS. Beautiful, responsive, and accessible components included.
+        icon: i-lucide-palette
+      - name: Developer Experience
+        description: TypeScript, ESLint, hot reload, and comprehensive documentation. Start coding immediately.
+        icon: i-lucide-code-2
+features:
+  title: Complete SaaS Starter Kit
+  description: Open source boilerplate that includes everything you need to launch your SaaS. Focus on your unique features while we handle the foundation.
+  items:
+    - title: Stripe Payments
+      description: Complete payment integration with subscriptions, billing management, and webhook handling for secure transactions.
+      icon: i-lucide-credit-card
+    - title: User Authentication
+      description: Secure authentication system with multiple providers support via Sidebase Nuxt Auth integration.
+      icon: i-lucide-shield-check
+    - title: Database Ready
+      description: Prisma ORM with PostgreSQL support, migrations, and a complete schema designed for SaaS applications.
+      icon: i-lucide-database
+    - title: Email System
+      description: Resend integration for transactional emails with beautiful templates and reliable delivery.
+      icon: i-lucide-mail
+    - title: Modern UI Framework
+      description: Nuxt UI components with Tailwind CSS styling, dark mode support, and responsive design.
+      icon: i-lucide-layout
+    - title: Deploy Anywhere
+      description: Optimized for Vercel deployment with Neon database integration and production-ready configuration.
+      icon: i-lucide-rocket
+testimonials:
+  headline: Trusted by Developers
+  title: Built for Modern SaaS Development
+  description: See why developers choose this starter template to ship their SaaS applications faster and with confidence.
+  items:
+    - quote: This starter template is incredible. Having Stripe, authentication, and database all configured saved us months of setup time. We launched our SaaS in record time.
+      user:
+        name: Sarah Chen
+        description: Founder at TechScale Solutions
+        avatar:
+          src: https://i.pravatar.cc/120?img=1
+    - quote: The complete integration between Nuxt, Prisma, and Stripe is seamless. Everything just works out of the box with excellent documentation.
+      user:
+        name: Marcus Rodriguez
+        description: Full Stack Developer at DataFlow
+        avatar:
+          src: https://i.pravatar.cc/120?img=7
+    - quote: From authentication to payments to email - it's all there. The code quality is exceptional and the TypeScript support is perfect.
+      user:
+        name: David Kumar
+        description: Lead Developer at SecureStack
+        avatar:
+          src: https://i.pravatar.cc/120?img=3
+    - quote: The Vercel deployment setup is perfect. One-click deploy with Neon database integration made our production deployment effortless.
+      user:
+        name: Emily Zhang
+        description: DevOps Engineer at ScaleForce
+        avatar:
+          src: https://i.pravatar.cc/120?img=5
+    - quote: Having Resend email integration with beautiful templates saved us weeks of work. The starter template thinks of everything.
+      user:
+        name: James Wilson
+        description: Product Manager at CloudPro
+        avatar:
+          src: https://i.pravatar.cc/120?img=8
+    - quote: Open source and production-ready. The code quality is exceptional and the documentation makes everything easy to understand and customize.
+      user:
+        name: Lisa Patel
+        description: CTO at AutoScale
+        avatar:
+          src: https://i.pravatar.cc/120?img=9
+    - quote: Reka UI foundation means accessibility is never an afterthought. We achieved WCAG compliance without any custom work.
+      user:
+        name: Michael Torres
+        description: Frontend Lead at AccessFirst
+        avatar:
+          src: https://i.pravatar.cc/120?img=11
+    - quote: The documentation is outstanding. Every component has clear examples, and the community on Discord is incredibly helpful.
+      user:
+        name: Rachel Kim
+        description: Performance Engineer at APIHub
+        avatar:
+          src: https://i.pravatar.cc/120?img=10
+    - quote: We replaced three different UI libraries with Nuxt UI. The consistency and quality across all components is unmatched.
+      user:
+        name: Thomas Weber
+        description: UI Architecture Lead at DesignScale
+        avatar:
+          src: https://i.pravatar.cc/120?img=12
+    - quote: The integration with Nuxt modules is seamless. Color mode, fonts, icons - everything works together perfectly.
+      user:
+        name: Sophia Martinez
+        description: Integration Specialist at TechFlow
+        avatar:
+          src: https://i.pravatar.cc/120?img=14
+cta:
+  title: Ready to build your SaaS?
+  description: Start with our open source Nuxt SaaS Stripe starter template. Everything you need to launch and scale your SaaS application.
+  links:
+    - label: Get started
+      to: /docs
+      trailingIcon: i-lucide-arrow-right
+    - label: View on GitHub
+      to: 'https://github.com/devstack-be/nuxt-saas-stripe-starter'
+      target: _blank
+      variant: subtle
+      icon: i-simple-icons-github

@@ -3,24 +3,16 @@ import type { Session } from 'next-auth'
 import type Stripe from 'stripe'
 import { prisma } from '~/lib/prisma'
 import { stripe } from '~/lib/stripe'
-import type { SubscriptionPlan } from '~/types'
+import { queryCollection } from '@nuxt/content/server'
 
 export default defineEventHandler(async (event) => {
-  let plans: SubscriptionPlan[]
-  try {
-    const pricingContent = await queryCollection(event, 'pricing').first()
-    plans = pricingContent?.plans
+  const pricingContent = await queryCollection(event, 'pricing').first()
+  const plans = pricingContent?.plans
 
-    if (!plans || plans.length === 0) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Pricing plans not found'
-      })
-    }
-  } catch {
+  if (!plans || plans.length === 0) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Failed to load pricing plans'
+      statusMessage: 'Pricing plans not found'
     })
   }
   const session = (await getServerSession(event)) as Session

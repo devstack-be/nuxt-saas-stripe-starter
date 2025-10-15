@@ -66,8 +66,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
       resend:
-        specifier: ^6.1.2
-        version: 6.1.2
+        specifier: 6.3.0-canary.0
+        version: 6.3.0-canary.0
       sass:
         specifier: ^1.93.2
         version: 1.93.2
@@ -5305,8 +5305,8 @@ packages:
   requrl@3.0.2:
     resolution: {integrity: sha512-f3gjR6d8MhOpn46PP+DSJywbmxi95fxQm3coXBFwognjFLla9X6tr8BdNyaIKNOEkaRbRcm0/zYAqN19N1oyhg==}
 
-  resend@6.1.2:
-    resolution: {integrity: sha512-C9Q+YkRe57P8MQlkHG3yatSR/B6sqBGA06Ri2DveJfkz9Vm16182FC/iHB0K6IAfmqZ4yRrFebFw1EPuktLtSg==}
+  resend@6.3.0-canary.0:
+    resolution: {integrity: sha512-HKuLv+xbCKRxaVFcK6Z2OOVeGPMu/pUjL9kuXeDJgO10njt00oaz0aVkLwebvxjprNhzusZ5+Wd8Bewtix2YcA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@react-email/render': '*'
@@ -12494,7 +12494,7 @@ snapshots:
 
   requrl@3.0.2: {}
 
-  resend@6.1.2: {}
+  resend@6.3.0-canary.0: {}
 
   resolve-from@4.0.0: {}
 

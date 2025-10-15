@@ -1,6 +1,6 @@
 <a href="https://next-saas-stripe-starter.vercel.app">
   <img alt="SaaS Starter" src="public/social-card.png"/>
-  <h1 align="center">Nuxt 3 - SaaS Stripe Starter</h1>
+  <h1 align="center">Nuxt 4 - SaaS Stripe Starter</h1>
 </a>
 
 <p align="center">
@@ -65,7 +65,7 @@ pnpm run dev
 
 - [Nuxt 4](https://nuxt.com) - The Intuitive Vue Framework
 - [Prisma ORM](https://prisma.io) - Next-generation ORM for Node.js & TypeScript | PostgreSQL, MySQL, MariaDB, SQL Server, SQLite, MongoDB and CockroachDB
-- [Sidebase Nuxt Auth](https://sidebase.io/nuxt-auth) - Effortlessly connect your Nuxt 3 application with Google, Github, Azure and countless others.
+- [Sidebase Nuxt Auth](https://sidebase.io/nuxt-auth) - Effortlessly connect your Nuxt 4 application with Google, Github, Azure and countless others.
 - [Stripe](https://stripe.com) - Online payment processing for internet businesses
 
 ### UI

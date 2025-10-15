@@ -1,8 +1,8 @@
 title: Build and deploy your Nuxt SaaS within minutes!
-description: Open source boilerplate built with Nuxt 3, Prisma, Neon, Nuxt Auth, Resend, Nuxt UI, and Stripe.
+description: Open source boilerplate built with Nuxt 4, Prisma, Neon, Nuxt Auth, Resend, Nuxt UI, and Stripe.
 seo:
   title: Nuxt SaaS Stripe Starter Template
-  description: Open source boilerplate to create your own SaaS website with Nuxt 3. Built with Prisma, Stripe, authentication, and modern UI components.
+  description: Open source boilerplate to create your own SaaS website with Nuxt 4. Built with Prisma, Stripe, authentication, and modern UI components.
 navigation: false
 hero:
   links:

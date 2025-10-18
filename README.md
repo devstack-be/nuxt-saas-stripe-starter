@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Nuxt SaaS Stareter is a **open source boilerplate** and will help you to create your own SaaS website with Nuxt.js. It is built with Nuxt 4, Nuxt UI and Nuxt Content. It is a perfect starting point for your next project.
+Nuxt SaaS Starter is a **open source boilerplate** and will help you to create your own SaaS website with Nuxt.js. It is built with Nuxt 4, Nuxt UI and Nuxt Content. It is a perfect starting point for your next project.
 
 This template is inspired by:
 

@@ -1,7 +1,6 @@
-<a href="https://next-saas-stripe-starter.vercel.app">
+
   <img alt="SaaS Starter" src="public/social-card.png"/>
   <h1 align="center">Nuxt 4 - SaaS Stripe Starter</h1>
-</a>
 
 <p align="center">
   Build and deploy your Nuxt SaaS within minutes !
